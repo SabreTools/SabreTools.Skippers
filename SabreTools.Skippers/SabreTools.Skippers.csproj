@@ -22,9 +22,9 @@
     <PackageTags>skippers headers game</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath=""/>
+    <None Include="../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
