@@ -34,7 +34,7 @@ jobs:
       uses: ncipollo/release-action@v1.14.0
       with:
         allowUpdates: True
-        artifacts: 'bin/Release/*.nupkg'
+        artifacts: 'SabreTools.Skippers/bin/Release/*.nupkg'
         body: 'Last built commit: ${{ github.sha }}'
         name: 'Rolling Release'
         prerelease: True
