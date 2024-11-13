@@ -42,7 +42,7 @@ namespace Headerer
                 using var fs = File.OpenRead(file);
                 int startOffset = int.Parse(rule.StartOffset ?? "0");
                 byte[] hbin = new byte[startOffset];
-                fs.Read(hbin, 0, startOffset);
+                int bytes = fs.Read(hbin, 0, startOffset);
                 hstr = ByteArrayExtensions.ByteArrayToString(hbin)!;
             }
             catch

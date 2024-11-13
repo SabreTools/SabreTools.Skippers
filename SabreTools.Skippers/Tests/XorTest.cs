@@ -111,7 +111,7 @@ namespace SabreTools.Skippers.Tests
             {
                 // Then apply the mask if it exists
                 byte[] read = new byte[_mask.Length];
-                input.Read(read, 0, _mask.Length);
+                int bytes = input.Read(read, 0, _mask.Length);
 
                 byte[] masked = new byte[_mask.Length];
                 for (int i = 0; i < read.Length; i++)
