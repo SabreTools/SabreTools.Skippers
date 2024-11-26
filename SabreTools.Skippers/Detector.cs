@@ -50,8 +50,14 @@ namespace SabreTools.Skippers
         /// <param name="input">Stream to be checked</param>
         /// <param name="skipperName">Name of the skipper to be used, blank to find a matching skipper</param>
         /// <returns>The Rule that matched the stream, null otherwise</returns>
-        public Rule? GetMatchingRule(Stream input, string skipperName)
+        public Rule? GetMatchingRule(Stream input, string? skipperName)
         {
+            // If the input stream is invalid
+            if (input.Length == 0 || !input.CanRead || !input.CanSeek)
+                return null;
+            else if (input.Position < 0 || input.Position >= input.Length)
+                return null;
+
             // If we have no name supplied, try to blindly match
             if (string.IsNullOrEmpty(skipperName))
                 return GetMatchingRule(input);

@@ -1,9 +1,7 @@
 using System.IO;
-
-using SabreTools.Skippers;
 using Xunit;
 
-namespace SabreTools.Test.Skippers
+namespace SabreTools.Skippers.Test
 {
     [Collection("SkipperMatch")]
     public class RuleTransformTests
