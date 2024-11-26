@@ -1,4 +1,4 @@
-﻿using SabreTools.Skippers.Tests;
+﻿using SabreTools.Skippers.TestTypes;
 
 namespace SabreTools.Skippers.Detectors
 {

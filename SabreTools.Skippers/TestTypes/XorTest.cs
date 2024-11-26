@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace SabreTools.Skippers.Tests
+namespace SabreTools.Skippers.TestTypes
 {
     /// <summary>
     /// Test that uses a byte mask XOR against data

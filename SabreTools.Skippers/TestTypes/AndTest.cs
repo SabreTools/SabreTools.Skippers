@@ -3,13 +3,13 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace SabreTools.Skippers.Tests
+namespace SabreTools.Skippers.TestTypes
 {
     /// <summary>
-    /// Test that checks data matches
+    /// Test that uses a byte mask AND against data
     /// </summary>
-    [XmlType("data")]
-    public class DataTest : Test
+    [XmlType("and")]
+    public class AndTest : Test
     {
         #region Fields
 
@@ -47,6 +47,17 @@ namespace SabreTools.Skippers.Tests
         [XmlAttribute("result")]
         public bool Result { get; set; } = true;
 
+        /// <summary>
+        /// Byte mask to be applied to the tested bytes
+        /// </summary>
+        /// <remarks>Hex string representation of a byte array</remarks>
+        [XmlAttribute("mask")]
+        public string? Mask
+        {
+            get => _mask == null ? string.Empty : BitConverter.ToString(_mask).Replace("-", string.Empty);
+            set => _mask = ParseByteArrayFromHex(value);
+        }
+
         #endregion
 
         #region Private instance variables
@@ -62,21 +73,31 @@ namespace SabreTools.Skippers.Tests
         /// </summary>
         private byte[]? _value;
 
+        /// <summary>
+        /// Byte mask to be applied to the tested bytes
+        /// </summary>
+        private byte[]? _mask;
+
         #endregion
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public DataTest(string? offset, string? value, bool result)
+        public AndTest(string? offset, string? value, bool result, string? mask)
         {
             Offset = offset;
             Value = value;
             Result = result;
+            Mask = mask;
         }
 
         /// <inheritdoc/>
         public override bool Passes(Stream input)
         {
+            // If we have an invalid mask
+            if (_mask == null || _mask.Length == 0)
+                return false;
+
             // If we have an invalid value
             if (_value == null || _value.Length == 0)
                 return false;
@@ -85,23 +106,32 @@ namespace SabreTools.Skippers.Tests
             if (!Seek(input, _offset))
                 return false;
 
-            // Then read and compare bytewise
             bool result = true;
-            for (int i = 0; i < _value.Length; i++)
+            try
             {
-                try
+                // Then apply the mask if it exists
+                byte[] read = new byte[_mask.Length];
+                int bytes = input.Read(read, 0, _mask.Length);
+
+                byte[] masked = new byte[_mask.Length];
+                for (int i = 0; i < read.Length; i++)
                 {
-                    if (input.ReadByte() != _value[i])
+                    masked[i] = (byte)(read[i] & _mask[i]);
+                }
+
+                // Finally, compare it against the value
+                for (int i = 0; i < _value.Length; i++)
+                {
+                    if (masked[i] != _value[i])
                     {
                         result = false;
                         break;
                     }
                 }
-                catch
-                {
-                    result = false;
-                    break;
-                }
+            }
+            catch
+            {
+                result = false;
             }
 
             // Return if the expected and actual results match

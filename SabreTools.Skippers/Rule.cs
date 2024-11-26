@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using SabreTools.Skippers.Tests;
+using SabreTools.Skippers.TestTypes;
 
 namespace SabreTools.Skippers
 {
