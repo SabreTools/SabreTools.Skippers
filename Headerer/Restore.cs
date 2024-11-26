@@ -36,7 +36,7 @@ namespace Headerer
             {
                 string outputFile = (string.IsNullOrWhiteSpace(outDir) ? $"{Path.GetFullPath(file)}.new" : Path.Combine(outDir, Path.GetFileName(file))) + i;
                 Console.WriteLine($"Creating reheadered file: {outputFile}");
-                AppendBytes(file, outputFile, ByteArrayExtensions.StringToByteArray(headers[i]), null);
+                AppendBytes(file, outputFile, headers[i].FromHexString(), null);
                 Console.WriteLine("Reheadered file created!");
             }
 

@@ -9,7 +9,7 @@
         public static void Main(string[] args)
         {
             // Validate the arguments
-            if (args == null || args.Length == 0)
+            if (args.Length == 0)
             {
                 Options.DisplayHelp("One input file path required");
                 return;

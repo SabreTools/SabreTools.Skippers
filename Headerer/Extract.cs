@@ -43,7 +43,7 @@ namespace Headerer
                 int startOffset = int.Parse(rule.StartOffset ?? "0");
                 byte[] hbin = new byte[startOffset];
                 int bytes = fs.Read(hbin, 0, startOffset);
-                hstr = ByteArrayExtensions.ByteArrayToString(hbin)!;
+                hstr = hbin.ToHexString()!;
             }
             catch
             {
