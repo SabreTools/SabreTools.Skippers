@@ -41,9 +41,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.7" />
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.8" />
         <PackageReference Include="SabreTools.Hashing" Version="1.5.0" />
-        <PackageReference Include="SabreTools.IO" Version="1.7.0" />
+        <PackageReference Include="SabreTools.IO" Version="1.7.2" />
     </ItemGroup>
 
 </Project>
