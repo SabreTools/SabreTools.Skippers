@@ -20,7 +20,7 @@ namespace SabreTools.Skippers
             get => _startOffset == null ? "EOF" : _startOffset.Value.ToString();
             set
             {
-                if (value == null || value.Equals("eof", StringComparison.InvariantCultureIgnoreCase))
+                if (value == null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
                     _startOffset = null;
                 else
                     _startOffset = Convert.ToInt64(value, fromBase: 16);
@@ -37,7 +37,7 @@ namespace SabreTools.Skippers
             get => _endOffset == null ? "EOF" : _endOffset.Value.ToString();
             set
             {
-                if (value == null || value.Equals("eof", StringComparison.InvariantCultureIgnoreCase))
+                if (value == null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
                     _endOffset = null;
                 else
                     _endOffset = Convert.ToInt64(value, fromBase: 16);

@@ -29,7 +29,7 @@ namespace SabreTools.Skippers.TestTypes
             get => _size == null ? "po2" : _size.Value.ToString();
             set
             {
-                if (value == null || value.ToLowerInvariant() == "po2")
+                if (value == null || value.Equals("po2", StringComparison.OrdinalIgnoreCase))
                     _size = null;
                 else
                     _size = Convert.ToInt64(value, fromBase: 16);

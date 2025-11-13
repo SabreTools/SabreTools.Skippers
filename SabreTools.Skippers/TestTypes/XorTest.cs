@@ -23,7 +23,7 @@ namespace SabreTools.Skippers.TestTypes
             get => _offset == null ? "EOF" : _offset.Value.ToString();
             set
             {
-                if (value == null || value.ToLowerInvariant() == "eof")
+                if (value == null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
                     _offset = null;
                 else
                     _offset = Convert.ToInt64(value, fromBase: 16);
