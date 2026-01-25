@@ -31,7 +31,7 @@ namespace SabreTools.Skippers
         public static void Init()
         {
             // If the list is populated, don't add to it
-            if (Skippers != null)
+            if (Skippers is not null)
                 return;
 
             // Generate header skippers internally
@@ -90,22 +90,22 @@ namespace SabreTools.Skippers
             var skipperRule = new Rule(null, null, HeaderSkipOperation.None, null, null);
 
             // If we have an invalid input
-            if (input == null || !input.CanRead)
+            if (input is null || !input.CanRead)
                 return skipperRule;
 
             // If we have an invalid set of skippers or skipper name
-            if (Skippers == null || skipperName == null)
+            if (Skippers is null || skipperName is null)
                 return skipperRule;
 
             // Loop through all known Detectors
             foreach (Detector? skipper in Skippers)
             {
                 // This should not happen
-                if (skipper == null)
+                if (skipper is null)
                     continue;
 
                 skipperRule = skipper.GetMatchingRule(input, skipperName);
-                if (skipperRule != null)
+                if (skipperRule is not null)
                     break;
             }
 

@@ -82,7 +82,7 @@ namespace SabreTools.Skippers
         private Rule? GetMatchingRule(Stream input)
         {
             // If we have no rules
-            if (Rules == null)
+            if (Rules is null)
                 return null;
 
             // Loop through the rules until one is found that works

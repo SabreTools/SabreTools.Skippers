@@ -29,7 +29,7 @@ namespace Headerer
             Rule rule = SkipperMatch.GetMatchingRule(file, string.Empty);
 
             // If we have an empty rule, return false
-            if (rule.Tests == null || rule.Tests.Length == 0 || rule.Operation != HeaderSkipOperation.None)
+            if (rule.Tests is null || rule.Tests.Length == 0 || rule.Operation != HeaderSkipOperation.None)
                 return false;
 
             Console.WriteLine("File has a valid copier header");

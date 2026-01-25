@@ -26,10 +26,10 @@ namespace SabreTools.Skippers.TestTypes
         [XmlAttribute("size")]
         public string? Size
         {
-            get => _size == null ? "po2" : _size.Value.ToString();
+            get => _size is null ? "po2" : _size.Value.ToString();
             set
             {
-                if (value == null || value.Equals("po2", StringComparison.OrdinalIgnoreCase))
+                if (value is null || value.Equals("po2", StringComparison.OrdinalIgnoreCase))
                     _size = null;
                 else
                     _size = Convert.ToInt64(value, fromBase: 16);
@@ -72,22 +72,22 @@ namespace SabreTools.Skippers.TestTypes
 
             // If we have a null size, check that the size is a power of 2
             bool result = true;
-            if (_size == null)
+            if (_size is null)
             {
                 // http://stackoverflow.com/questions/600293/how-to-check-if-a-number-is-a-power-of-2
-                result = (((ulong)size & ((ulong)size - 1)) == 0);
+                result = ((ulong)size & ((ulong)size - 1)) == 0;
             }
             else if (Operator == HeaderSkipTestFileOperator.Less)
             {
-                result = (size < _size);
+                result = size < _size;
             }
             else if (Operator == HeaderSkipTestFileOperator.Greater)
             {
-                result = (size > _size);
+                result = size > _size;
             }
             else if (Operator == HeaderSkipTestFileOperator.Equal)
             {
-                result = (size == _size);
+                result = size == _size;
             }
 
             // Return if the expected and actual results match

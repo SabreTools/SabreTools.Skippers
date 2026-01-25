@@ -19,7 +19,7 @@
             var options = Options.ParseOptions(args);
 
             // If we have an invalid state
-            if (options == null)
+            if (options is null)
             {
                 Options.DisplayHelp();
                 return;
@@ -37,6 +37,10 @@
 
                     case Feature.Restore:
                         _ = Restore.RestoreHeader(inputPath, options.OutputDir);
+                        break;
+
+                    case Feature.NONE:
+                    default:
                         break;
                 }
             }

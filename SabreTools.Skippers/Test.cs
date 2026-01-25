@@ -49,7 +49,7 @@ namespace SabreTools.Skippers
             try
             {
                 // Null offset means EOF
-                if (offset == null)
+                if (offset is null)
                     input.Seek(0, SeekOrigin.End);
 
                 // Positive offset means from beginning

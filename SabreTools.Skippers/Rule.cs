@@ -17,10 +17,10 @@ namespace SabreTools.Skippers
         [XmlAttribute("start_offset")]
         public string? StartOffset
         {
-            get => _startOffset == null ? "EOF" : _startOffset.Value.ToString();
+            get => _startOffset is null ? "EOF" : _startOffset.Value.ToString();
             set
             {
-                if (value == null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
+                if (value is null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
                     _startOffset = null;
                 else
                     _startOffset = Convert.ToInt64(value, fromBase: 16);
@@ -34,10 +34,10 @@ namespace SabreTools.Skippers
         [XmlAttribute("end_offset")]
         public string? EndOffset
         {
-            get => _endOffset == null ? "EOF" : _endOffset.Value.ToString();
+            get => _endOffset is null ? "EOF" : _endOffset.Value.ToString();
             set
             {
-                if (value == null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
+                if (value is null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
                     _endOffset = null;
                 else
                     _endOffset = Convert.ToInt64(value, fromBase: 16);
@@ -106,7 +106,7 @@ namespace SabreTools.Skippers
             bool success = true;
 
             // If there are no tests
-            if (Tests == null || Tests.Length == 0)
+            if (Tests is null || Tests.Length == 0)
                 return success;
 
             foreach (Test test in Tests)
@@ -164,14 +164,14 @@ namespace SabreTools.Skippers
             bool success = true;
 
             // If the input stream isn't valid
-            if (input == null || !input.CanRead)
+            if (input is null || !input.CanRead)
                 return false;
 
             // If the sizes are wrong for the values, fail
             long extsize = input.Length;
             if ((Operation > HeaderSkipOperation.Bitswap && (extsize % 2) != 0)
                 || (Operation > HeaderSkipOperation.Byteswap && (extsize % 4) != 0)
-                || (Operation > HeaderSkipOperation.Bitswap && (_startOffset == null || _startOffset % 2 != 0)))
+                || (Operation > HeaderSkipOperation.Bitswap && (_startOffset is null || _startOffset % 2 != 0)))
             {
                 return false;
             }
@@ -185,7 +185,7 @@ namespace SabreTools.Skippers
                 br = new BinaryReader(input);
 
                 // Seek to the beginning offset
-                if (_startOffset == null)
+                if (_startOffset is null)
                     success = false;
 
                 else if (Math.Abs((long)_startOffset) > input.Length)
@@ -218,6 +218,7 @@ namespace SabreTools.Skippers
                                     r |= (byte)(b & 1);
                                     s--;
                                 }
+
                                 r <<= s;
                                 buffer[pos] = (byte)r;
                                 break;

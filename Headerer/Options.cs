@@ -44,7 +44,7 @@ namespace Headerer
         public static Options? ParseOptions(string[] args)
         {
             // If we have invalid arguments
-            if (args == null || args.Length == 0)
+            if (args is null || args.Length == 0)
                 return null;
 
             // Create an Options object

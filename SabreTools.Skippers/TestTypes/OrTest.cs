@@ -20,10 +20,10 @@ namespace SabreTools.Skippers.TestTypes
         [XmlAttribute("offset")]
         public string? Offset
         {
-            get => _offset == null ? "EOF" : _offset.Value.ToString();
+            get => _offset is null ? "EOF" : _offset.Value.ToString();
             set
             {
-                if (value == null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
+                if (value is null || value.Equals("eof", StringComparison.OrdinalIgnoreCase))
                     _offset = null;
                 else
                     _offset = Convert.ToInt64(value, fromBase: 16);
@@ -37,7 +37,7 @@ namespace SabreTools.Skippers.TestTypes
         [XmlAttribute("value")]
         public string? Value
         {
-            get => _value == null ? string.Empty : BitConverter.ToString(_value).Replace("-", string.Empty);
+            get => _value is null ? string.Empty : BitConverter.ToString(_value).Replace("-", string.Empty);
             set => _value = ParseByteArrayFromHex(value);
         }
 
@@ -54,7 +54,7 @@ namespace SabreTools.Skippers.TestTypes
         [XmlAttribute("mask")]
         public string? Mask
         {
-            get => _mask == null ? string.Empty : BitConverter.ToString(_mask).Replace("-", string.Empty);
+            get => _mask is null ? string.Empty : BitConverter.ToString(_mask).Replace("-", string.Empty);
             set => _mask = ParseByteArrayFromHex(value);
         }
 
@@ -95,11 +95,11 @@ namespace SabreTools.Skippers.TestTypes
         public override bool Passes(Stream input)
         {
             // If we have an invalid mask
-            if (_mask == null || _mask.Length == 0)
+            if (_mask is null || _mask.Length == 0)
                 return false;
 
             // If we have an invalid value
-            if (_value == null || _value.Length == 0)
+            if (_value is null || _value.Length == 0)
                 return false;
 
             // Seek to the correct position, if possible

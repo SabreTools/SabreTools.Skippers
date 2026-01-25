@@ -72,14 +72,14 @@ namespace Headerer
         private static void AppendBytes(Stream input, Stream output, byte[]? bytesToAddToHead, byte[]? bytesToAddToTail)
         {
             // Write out prepended bytes
-            if (bytesToAddToHead != null && bytesToAddToHead.Length > 0)
+            if (bytesToAddToHead is not null && bytesToAddToHead.Length > 0)
                 output.Write(bytesToAddToHead, 0, bytesToAddToHead.Length);
 
             // Now copy the existing file over
             input.CopyTo(output);
 
             // Write out appended bytes
-            if (bytesToAddToTail != null && bytesToAddToTail.Length > 0)
+            if (bytesToAddToTail is not null && bytesToAddToTail.Length > 0)
                 output.Write(bytesToAddToTail, 0, bytesToAddToTail.Length);
         }
     }
