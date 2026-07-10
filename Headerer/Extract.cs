@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using SabreTools.Hashing;
-using SabreTools.IO.Extensions;
 using SabreTools.Skippers;
+using SabreTools.Text.Extensions;
 
 namespace Headerer
 {
