@@ -139,7 +139,9 @@ namespace SabreTools.Skippers
             Directory.CreateDirectory(parentDirectory);
 
             //logger.User($"Attempting to apply rule to '{input}'");
-            bool success = TransformStream(File.OpenRead(input), File.Create(output));
+            using var inputStream = File.OpenRead(input);
+            using var outputStream = File.Create(output);
+            bool success = TransformStream(inputStream, outputStream);
 
             // If the output file has size 0, delete it
             if (new FileInfo(output).Length == 0)
