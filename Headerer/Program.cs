@@ -6,7 +6,7 @@ namespace Headerer
     public class Program
     {
         /// <summary>
-        /// Entry point for the SabreTools application
+        /// Entry point for the Headerer application
         /// </summary>
         /// <param name="args">String array representing command line parameters</param>
         public static void Main(string[] args)
