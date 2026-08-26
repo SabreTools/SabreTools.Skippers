@@ -3,6 +3,7 @@ using System.IO;
 
 namespace Headerer
 {
+    // TODO: Use commandline library instead of custom implementation
     public class Program
     {
         /// <summary>
