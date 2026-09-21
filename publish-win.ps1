@@ -22,7 +22,7 @@ param(
 
     [Parameter(Mandatory = $false)]
     [Alias("NoArchive")]
-    [switch]$NO_ARCHIVE
+    [switch]$NO_ARCHIVE,
 
     [Parameter(Mandatory = $false, ValueFromPipeline = $true)]
     [Alias("BuildVersion")]
