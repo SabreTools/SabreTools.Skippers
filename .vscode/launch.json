@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Headerer/bin/Debug/net10.0/Headerer.dll",
+            "program": "${workspaceFolder}/Headerer/bin/Debug/net11.0/Headerer.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
